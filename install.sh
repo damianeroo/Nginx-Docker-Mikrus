@@ -34,7 +34,7 @@ while [[ $# -gt 0 ]]; do
 
     case $arg in
         -a|--all)
-            ALL="yes"
+            ALL=$2
             shift
             ;;  
         -p|--port)
