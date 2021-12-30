@@ -18,3 +18,5 @@ cd Nginx-Docker-Mikrus
  -n nazwa dla naszego kontenera z Nginx
  ```
  Po zakończeniu instalacji dostajemy ścieżke do folderu html naszego Nginx
+
+Wystarczy już tylko wrzucić swoją stone do katalogu html i podpiąc domenę przez Cloudflare po IPv6 lub wybrac subdomene z panelu Mikrusa.
