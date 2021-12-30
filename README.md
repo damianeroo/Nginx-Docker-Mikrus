@@ -8,14 +8,14 @@ Skrypt sprawdza czy mamy Dockera, jeśli go nie posiadamy instaluje go za pomoc�
 ```bash
 git clone https://github.com/damianeroo/Nginx-Docker-Mikrus.git
 cd Nginx-Docker-Mikrus
-./install.sh -a -p 12345 -n NginxTest
+./install.sh -a yes -p 12345 -n NginxTest
 ```
 
 ➤ Opis parametrów
 ```
- -a instaluje nam Portainera (gdy go nie chcemy nie podajemy tego paramaetru)
- -p port naszego Mikrusa na którym będzie dział nasz Portainer (nie wymagany gdy nie instalujemy Portainera)
- -n nazwa dla naszego kontenera z Nginx
+ "-a yes" instaluje nam Portainera (gdy go nie chcemy nie podajemy tego paramaetru)
+ "-p 12345" port naszego Mikrusa na którym będzie dział nasz Portainer (nie wymagany gdy nie instalujemy Portainera) (np.12345)
+ "-n NginxTest" nazwa dla naszego kontenera z Nginx (np. NginxTest)
  ```
  Po zakończeniu instalacji dostajemy ścieżke do folderu html naszego Nginx
 
