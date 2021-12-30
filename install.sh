@@ -34,7 +34,7 @@ while [[ $# -gt 0 ]]; do
 
     case $arg in
         -a|--all)
-            ALL=$2
+            ALL="yes"
             shift
             ;;  
         -p|--port)
@@ -52,10 +52,10 @@ while [[ $# -gt 0 ]]; do
     shift
 done
 
-if ["" = ${NAME} ]; then
+if [ "" = ${NAME} ]; then
     NAME="nginx"
 fi
-if [ "" = ${ALL} ]; then
+if [ "yes" = ${ALL} ]; then
     if [ "" = ${PORT} ]; then
        error "Brak numeru portu dla Portainer ( -p 12345 )"
     fi
@@ -69,7 +69,7 @@ if [ "docker" = "${MISSING_DOCKER}" ]; then
   sh -c "$(curl -fsSL https://raw.githubusercontent.com/unkn0w/noobs/main/scripts/chce_dockera.sh)" > /dev/null
 fi
 
-if [ "" = ${ALL} ]; then
+if [ "yes" = ${ALL} ]; then
     ##
     # Install Portainer
     info "Install Portainer"
@@ -91,7 +91,7 @@ sleep 10
 
 info
 info "Nginx gotowy"
-if [ "" = ${ALL} ]; then
+if [ "yes" = ${ALL} ]; then
     info "Adres twojego Portainera"
     info "{adres mikrusa}:${PORT}"
 fi
