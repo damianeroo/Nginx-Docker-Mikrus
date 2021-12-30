@@ -52,11 +52,11 @@ while [[ $# -gt 0 ]]; do
     shift
 done
 
-if [ "" = ${NAME} ]; then
+if [ "" = "${NAME}" ]; then
     NAME="nginx"
 fi
 if [ "yes" = "${ALL}" ]; then
-   if [ "" = ${PORT} ]; then
+   if [ "" = "${PORT}" ]; then
        error "Brak numeru portu dla Portainer ( -p 12345 )"
     fi
 fi
