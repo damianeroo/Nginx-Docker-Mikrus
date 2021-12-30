@@ -33,6 +33,10 @@ while [[ $# -gt 0 ]]; do
     arg="$1"
 
     case $arg in
+        -a|--all)
+            ALL=$2
+            shift
+            ;;  
         -p|--port)
             PORT=$2
             shift
@@ -51,8 +55,10 @@ done
 if ["" = ${NAME} ]; then
     NAME="nginx"
 fi
-if [ "" = ${PORT} ]; then
-    error "Brak numeru portu dla Portainer ( -p 12345 )"
+if [ "" = ${ALL} ]; then
+    if [ "" = ${PORT} ]; then
+       error "Brak numeru portu dla Portainer ( -p 12345 )"
+    fi
 fi
 ### Main
 
@@ -63,14 +69,15 @@ if [ "docker" = "${MISSING_DOCKER}" ]; then
   sh -c "$(curl -fsSL https://raw.githubusercontent.com/unkn0w/noobs/main/scripts/chce_dockera.sh)" > /dev/null
 fi
 
-##
-# Install Portainer
-info "Install Portainer"
-docker container ls | grep -e portainer || MISSING_PORTAINER=("portainer")
-if [ "portainer" = "${MISSING_PORTAINER}" ]; then
-docker run -d -p ${PORT}:9000 -p 8000:8000 --name portainer --restart always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce:latest  > /dev/null
+if [ "" = ${ALL} ]; then
+    ##
+    # Install Portainer
+    info "Install Portainer"
+    docker container ls | grep -e portainer || MISSING_PORTAINER=("portainer")
+    if [ "portainer" = "${MISSING_PORTAINER}" ]; then
+    docker run -d -p ${PORT}:9000 -p 8000:8000 --name portainer --restart always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce:latest  > /dev/null
+    fi
 fi
-
 ##
 # Install NGINX
 info "Install NGINX"
@@ -84,8 +91,10 @@ sleep 10
 
 info
 info "Nginx gotowy"
-info "Adres twojego Portainera"
-info "{adres mikrusa}:${PORT}"
+if [ "" = ${ALL} ]; then
+    info "Adres twojego Portainera"
+    info "{adres mikrusa}:${PORT}"
+fi
 info 
 info "Katalog twojej stony:"
 info " /var/lib/docker/volumes/${VOL2}/_data"
