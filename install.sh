@@ -55,7 +55,8 @@ done
 if [ "" = ${NAME} ]; then
     NAME="nginx"
 fi
-if [ "" = ${PORT} ]; then
+if [ "yes" = "${ALL}" ]; then
+   if [ "" = ${PORT} ]; then
        error "Brak numeru portu dla Portainer ( -p 12345 )"
     fi
 fi
